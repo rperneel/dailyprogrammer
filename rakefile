@@ -10,6 +10,24 @@ task :morsecode_1, [:input] do |t, args|
 end
 
 desc "https://www.reddit.com/r/dailyprogrammer/comments/cdieag/20190715_challenge_379_easy_progressive_taxation/"
-task :easy_taxation, [:income] do [t, a]
-    
+task :easy_taxation, [:income] do |t, a|
+    brackets = [0, 0.10, 0.25, 0.40]
+    taxation = 0
+    income = a[:income].to_i
+    if (income > 100000)
+        taxation = brackets[3] * (income - 100000)
+        income = 100000
+    end
+
+    if (income > 30000 && income <= 100000)
+        taxation += brackets[2] * (income - 30000)
+        income = 30000
+    end
+
+    if (income > 10000 && income <= 30000) 
+        taxation += brackets[1] * (income - 10000)
+        income = 10000
+    end
+
+    puts taxation
 end
