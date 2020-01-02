@@ -1,0 +1,15 @@
+MORSE_CODE = ".- -... -.-. -.. . ..-. --. .... .. .--- -.- .-.. -- -. --- .--. --.- .-. ... - ..- ...- .-- -..- -.-- --.."
+
+desc "https://www.reddit.com/r/dailyprogrammer/comments/cmd1hb/20190805_challenge_380_easy_smooshed_morse_code_1/"
+task :morsecode_1, [:input] do |t, args|
+    values = MORSE_CODE.split(' ')
+    CHARACTERS = args[:input].to_s.split(//)
+    output = ''
+    CHARACTERS.each { |n| output += "#{values[n.ord - 97]}" }
+    puts output
+end
+
+desc "https://www.reddit.com/r/dailyprogrammer/comments/cdieag/20190715_challenge_379_easy_progressive_taxation/"
+task :easy_taxation, [:income] do [t, a]
+    
+end
