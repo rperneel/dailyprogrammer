@@ -31,3 +31,36 @@ task :easy_taxation, [:income] do |t, a|
 
     puts taxation
 end
+
+desc "https://www.reddit.com/r/dailyprogrammer/comments/ab9mn7/20181231_challenge_371_easy_n_queens_validator/"
+task :nqueens, [:values] do |t, a|
+    # pass in a string with the values separated by a space.
+    input = a[:values].split ' '
+    if input.uniq.length == input.length
+        puts true
+    else
+        puts false
+    end
+end
+
+desc "https://www.reddit.com/r/dailyprogrammer/comments/a72sdj/20181217_challenge_370_easy_upc_check_digits/"
+task :upcCheck, [:upc] do |t, a|
+    # pass in a string with the values separated by a space.
+    upc = a[:upc]
+    while upc.length < 11
+        upc = "0"+upc
+    end
+    puts upc
+    input = upc.split(//)
+    checkDigit = 0
+    oddSum = 0
+    evenSum = 0
+    input.each_with_index { |s, i| oddSum += s.to_i if i % 2 == 0 }
+    input.each_with_index { |s, i| evenSum += s.to_i if i % 2 == 1 }
+    oddMultiply = oddSum * 3
+    modValue = (oddMultiply + evenSum) % 10
+    if modValue != 0 
+        checkDigit = 10 - modValue
+    end
+    puts checkDigit
+end
